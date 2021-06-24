@@ -1,17 +1,19 @@
 package com.abernathyclinic.mediscreen.domain;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
+import org.junit.Test;
+
+import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
 public class Patient {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
+    @Type(type="org.hibernate.type.UUIDCharType")
     private UUID id;
     private String lastName;
     private String firstName;

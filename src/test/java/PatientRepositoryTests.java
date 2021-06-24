@@ -32,7 +32,7 @@ public class PatientRepositoryTests {
     public void should_save_a_patient() {
         Patient patient = new Patient("Dylan", "Bob", "22/06/2021", "M", "20 rue du Bob", "666-666");
         testEntityManager.persist(patient);
-        Patient patientSearch = patientRepository.findByFirstNameAndLastName("Bob", "Dylan").get(0);
+        Patient patientSearch = patientRepository.findByFirstNameAndLastName("Bob", "Dylan").get();
         assertThat(patientSearch).hasFieldOrPropertyWithValue("lastName", "Dylan");
         assertThat(patientSearch).hasFieldOrPropertyWithValue("dateOfBirth", "22/06/2021");
         assertThat(patientSearch).hasFieldOrPropertyWithValue("address", "20 rue du Bob");

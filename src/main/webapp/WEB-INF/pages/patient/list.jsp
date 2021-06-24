@@ -25,7 +25,6 @@
             <table class="table table-striped table-bordered" style="width: 100%" id="patientTable">
                 <thead>
                     <tr>
-                        <th>Id</th>
                         <th>LastName</th>
                         <th>FirstName</th>
                         <th>DateOfBirth</th>
@@ -34,20 +33,21 @@
                         <th>Phone</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody style="width: 100%">
                     <c:forEach items="${patients}" var="patient">
                         <tr>
-                            <td>${patient.id}</td>
                             <td>${patient.lastName}</td>
                             <td>${patient.firstName}</td>
                             <td>${patient.dateOfBirth}</td>
                             <td>${patient.gender}</td>
                             <td>${patient.address}</td>
                             <td>${patient.phone}</td>
+                            <td><a href="/patient/edit/${patient.id}" >Edit</a></td>
                         </tr>
                     </c:forEach>
                 </tbody>
             </table>
+            <br/><a href="add">Add New Patient</a>
         </div>
     </div>
 </div>
