@@ -43,6 +43,7 @@
                             <td>${patient.address}</td>
                             <td>${patient.phone}</td>
                             <td><a href="/patient/edit/${patient.id}" >Edit</a></td>
+                            <td><a href="http://localhost:8083/diabetes/list/${patient.id}">Report</a></td>
                         </tr>
                     </c:forEach>
                 </tbody>

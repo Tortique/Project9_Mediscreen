@@ -1,9 +1,6 @@
 package com.abernathyclinic.mediscreen.domain;
 
-
-import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
-import org.junit.Test;
 
 import javax.persistence.*;
 import java.util.UUID;

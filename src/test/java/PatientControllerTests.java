@@ -38,7 +38,7 @@ public class PatientControllerTests {
 
         when(patientRepository.save(patientSaved)).thenReturn(patientSaved);
 
-        MvcResult mvcResult = mockMvc.perform(post("/api/addPatient?lastName=lastName&firstName=firstName&dateOfBirth=dateOfBirth&gender=gender&address=address&phone=phone"))
+        MvcResult mvcResult = mockMvc.perform(post("/api/patient/addPatient?lastName=lastName&firstName=firstName&dateOfBirth=dateOfBirth&gender=gender&address=address&phone=phone"))
                 .andDo(print()).andReturn();
         MockHttpServletResponse response = mvcResult.getResponse();
 
@@ -50,7 +50,7 @@ public class PatientControllerTests {
     void getAllPatientTest() throws Exception {
         when(patientRepository.findAll()).thenReturn(new ArrayList<>());
 
-        MvcResult mvcResult = mockMvc.perform(get("/api/getAll")).andDo(print())
+        MvcResult mvcResult = mockMvc.perform(get("/api/patient/getAll")).andDo(print())
                 .andReturn();
         int status = mvcResult.getResponse().getStatus();
 
@@ -61,7 +61,7 @@ public class PatientControllerTests {
     void getPatientByIdTest() throws Exception {
         when(patientRepository.findById(any(UUID.class))).thenReturn(Optional.of(new Patient()));
 
-        MvcResult mvcResult = mockMvc.perform(get("/api/getById?id=b42a8ef5-8baa-4bc2-89aa-d18cdc3239f9")).andDo(print())
+        MvcResult mvcResult = mockMvc.perform(get("/api/patient/getById?id=b42a8ef5-8baa-4bc2-89aa-d18cdc3239f9")).andDo(print())
                 .andReturn();
         int status = mvcResult.getResponse().getStatus();
 
@@ -71,7 +71,7 @@ public class PatientControllerTests {
 
     @Test
     void getPatientByIdThrownNotFoundExceptionTest() throws Exception {
-        MvcResult mvcResult = mockMvc.perform(get("/api/getById?id=b42a8ef5-8baa-4bc2-89aa-d18cdc3239f8")).andDo(print())
+        MvcResult mvcResult = mockMvc.perform(get("/api/patient/getById?id=b42a8ef5-8baa-4bc2-89aa-d18cdc3239f8")).andDo(print())
                 .andReturn();
         int status = mvcResult.getResponse().getStatus();
 
@@ -82,7 +82,7 @@ public class PatientControllerTests {
     void getPatientByFirstNameAndLastNameTest() throws Exception {
         when(patientRepository.findByFirstNameAndLastName(any(String.class), any(String.class))).thenReturn(Optional.of(new Patient()));
 
-        MvcResult mvcResult = mockMvc.perform(get("/api/getByFirstNameAndLastName?firstName=firstName&lastName=lastName"))
+        MvcResult mvcResult = mockMvc.perform(get("/api/patient/getByFirstNameAndLastName?firstName=firstName&lastName=lastName"))
                 .andDo(print()).andReturn();
         int status = mvcResult.getResponse().getStatus();
 
@@ -92,7 +92,7 @@ public class PatientControllerTests {
 
     @Test
     void getPatientByFirstNameAndLastNameThrownNotFoundExceptionTest() throws Exception {
-        MvcResult mvcResult = mockMvc.perform(get("/api/getByFirstNameAndLastName?firstName=firstName&lastName=lastName\"")).andDo(print())
+        MvcResult mvcResult = mockMvc.perform(get("/api/patient/getByFirstNameAndLastName?firstName=firstName&lastName=lastName\"")).andDo(print())
                 .andReturn();
         int status = mvcResult.getResponse().getStatus();
 
@@ -106,7 +106,7 @@ public class PatientControllerTests {
         when(patientRepository.findById(uuid)).thenReturn(Optional.of(patientToUpdate));
         when(patientRepository.save(patientToUpdate)).thenReturn(patientToUpdate);
 
-        MvcResult mvcResult = mockMvc.perform(put("/api/updatePatient/" + uuid).contentType(MediaType.APPLICATION_JSON).content(
+        MvcResult mvcResult = mockMvc.perform(put("/api/patient/updatePatient/" + uuid).contentType(MediaType.APPLICATION_JSON).content(
                 "{\"lastName\": \"lastName\",\"firstName\": \"firstName\",\"dateOfBirth\": \"dateOfBirth\",\"gender\": \"gender\"}"))
                 .andDo(print()).andReturn();
         MockHttpServletResponse response = mvcResult.getResponse();
@@ -118,7 +118,7 @@ public class PatientControllerTests {
     @Test
     void updatePatientButThrownNotFoundExceptionTest() throws Exception {
         UUID uuid = UUID.randomUUID();
-        MvcResult mvcResult = mockMvc.perform(put("/api/updatePatient/" + uuid).contentType(MediaType.APPLICATION_JSON).content(
+        MvcResult mvcResult = mockMvc.perform(put("/api/patient/updatePatient/" + uuid).contentType(MediaType.APPLICATION_JSON).content(
                 "{\"lastName\": \"lastName\",\"firstName\": \"firstName\",\"dateOfBirth\": \"dateOfBirth\",\"gender\": \"gender\"}"))
                 .andDo(print()).andReturn();
         int status = mvcResult.getResponse().getStatus();

@@ -24,6 +24,9 @@
                 <h3>
                     <a href="patient/add"> Add New Patient</a>
                 </h3>
+                <h3>
+                    <a href="http://localhost:8083"> Diabetes Home</a>
+                </h3>
             </div>
         </div>
     </div>

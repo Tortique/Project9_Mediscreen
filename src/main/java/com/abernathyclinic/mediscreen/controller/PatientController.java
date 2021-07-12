@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/patient")
 public class PatientController {
 
     @Autowired
@@ -61,8 +61,6 @@ public class PatientController {
         patientToUpdate.setLastName(patient.getLastName());
         patientToUpdate.setDateOfBirth(patient.getDateOfBirth());
         patientToUpdate.setGender(patient.getGender());
-        patientToUpdate.setAddress(patient.getAddress());
-        patientToUpdate.setPhone(patient.getPhone());
         patientRepository.save(patientToUpdate);
         return "Patient updated";
     }
